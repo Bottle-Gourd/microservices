@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/dave/orion/microservices'
+go test ./... -v -run="none" -bench=. 
+make: Leaving directory '/home/dave/orion/microservices'
+ 

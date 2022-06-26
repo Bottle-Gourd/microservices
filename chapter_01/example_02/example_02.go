@@ -2,6 +2,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -15,6 +16,16 @@ func main() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%v", port), nil))
 }
 
+type helloWorldResponse struct {
+	Message string
+}
+
 func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello World\n")
+	response := helloWorldResponse{Message: "HelloWorld!"}
+
+	data, err := json.Marshal(response)
+	if err != nil {
+		panic("Oops!")
+	}
+	fmt.Fprint(w, string(data))
 }
